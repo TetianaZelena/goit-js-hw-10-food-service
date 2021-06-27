@@ -34,7 +34,7 @@ swichToggleTheme.addEventListener('change', (e) => {
       bodyTheme .classList.remove('light-theme');
       bodyTheme.classList.add('dark-theme');
       localStorage.removeItem('light-theme', savedTheme);
-      localStorage.setItem('dark-theme', savedTheme )
+      localStorage.setItem('dark-theme', savedTheme)
    }
    isLightTheme = !isLightTheme;
 });
