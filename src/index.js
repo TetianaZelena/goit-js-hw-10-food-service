@@ -39,9 +39,9 @@ swichToggleTheme.addEventListener('change', (e) => {
    isLightTheme = !isLightTheme;
 });
 
-function saveCurrentTheme() {
-   const onSaveCurentTheme = localStorage.getItem('dark-theme')
-   if (onSaveCurentTheme) {
-      bodyTheme.value = onSaveCurentTheme;
-   }
-   }
+// function saveCurrentTheme() {
+//    const onSaveCurentTheme = localStorage.getItem('dark-theme')
+//    if (onSaveCurentTheme) {
+//       bodyTheme.value = onSaveCurentTheme;
+//    }
+//    }
