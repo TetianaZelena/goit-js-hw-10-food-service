@@ -16,35 +16,54 @@ const Theme = {
 
 const swichToggleTheme = document.querySelector('.js-theme-switch__toggle');
 const bodyTheme = document.querySelector('body');
-upCurrentdarkTheme();
-upCurrentLightTheme();
+// upCurrentTheme();
 let isLightTheme = true;
 swichToggleTheme.addEventListener('change', (e) => {
+   // swichToggleTheme.checked;
    const savedTheme = e.target.value;
    e.preventDefault();
    
    if (isLightTheme) {
-      //light
-      bodyTheme .classList.remove('dark-theme');
-      bodyTheme.classList.add('light-theme');
-      localStorage.removeItem('dark-theme', savedTheme);
-      upCurrentLightTheme();
-      localStorage.setItem('light-theme', savedTheme);
-   }
-   else {
       //dark
-      bodyTheme .classList.remove('light-theme');
+      upCurrentTheme();
+      bodyTheme.classList.remove('light-theme');
       bodyTheme.classList.add('dark-theme');
       localStorage.removeItem('light-theme', savedTheme);
-      upCurrentdarkTheme();
+      localStorage.getItem('dark-theme');
       localStorage.setItem('dark-theme', savedTheme)
+      swichToggleTheme.checked = true;
+   }
+   else  {
+   //light
+      bodyTheme.classList.remove('dark-theme');
+      bodyTheme.classList.add('light-theme');
+      localStorage.removeItem('dark-theme', savedTheme);
+      upCurrentTheme();
+      localStorage.setItem('light-theme', savedTheme);
    }
    isLightTheme = !isLightTheme;
 });
 
-function upCurrentdarkTheme() {
-   bodyTheme.value = localStorage.getItem('dark-theme');  
+function upCurrentTheme() {
+   let currentTheme = bodyTheme.getAttribute('dark-theme');
+   let theme = "";
+   if (currentTheme == Theme.DARK) {
+      currentTheme = Theme.DARK;
+    
+   }
+   else {
+      currentTheme = Theme.LIGHT;
+    
+   }
+   bodyTheme.setAttribute('dark-theme', currentTheme);
+return theme
+   
+   // bodyTheme.value = localStorage.getItem('dark-theme');
+   //  let currentThemedark = Theme.DARK;
+   //    if (currentThemedark === 'dark-theme') {
+   //    bodyTheme.classList.add('dark-theme');
+   //    }
 };
-   function upCurrentLightTheme() {
-   bodyTheme.value = localStorage.getItem('light-theme');  
-};
+ 
+ 
+   
