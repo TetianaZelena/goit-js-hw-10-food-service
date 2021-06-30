@@ -16,54 +16,32 @@ const Theme = {
 
 const swichToggleTheme = document.querySelector('.js-theme-switch__toggle');
 const bodyTheme = document.querySelector('body');
-// upCurrentTheme();
-let isLightTheme = true;
-swichToggleTheme.addEventListener('change', (e) => {
-   // swichToggleTheme.checked;
-   const savedTheme = e.target.value;
-   e.preventDefault();
-   
-   if (isLightTheme) {
-      //dark
-      upCurrentTheme();
-      bodyTheme.classList.remove('light-theme');
-      bodyTheme.classList.add('dark-theme');
-      localStorage.removeItem('light-theme', savedTheme);
-      localStorage.getItem('dark-theme');
-      localStorage.setItem('dark-theme', savedTheme)
-      swichToggleTheme.checked = true;
-   }
-   else  {
-   //light
-      bodyTheme.classList.remove('dark-theme');
-      bodyTheme.classList.add('light-theme');
-      localStorage.removeItem('dark-theme', savedTheme);
-      upCurrentTheme();
-      localStorage.setItem('light-theme', savedTheme);
-   }
-   isLightTheme = !isLightTheme;
-});
 
-function upCurrentTheme() {
-   let currentTheme = bodyTheme.getAttribute('dark-theme');
-   let theme = "";
-   if (currentTheme == Theme.DARK) {
-      currentTheme = Theme.DARK;
-    
+ bodyTheme.classList.add(Theme.LIGHT);
+
+swichToggleTheme.addEventListener('change', function () {
+   if (this.checked) {
+      //dark
+     
+       bodyTheme.classList.remove(Theme.LIGHT);
+      bodyTheme.classList.add(Theme.DARK);
+      localStorage.removeItem('theme', Theme.LIGHT)
+       localStorage.setItem('theme', Theme.DARK )
    }
    else {
-      currentTheme = Theme.LIGHT;
-    
-   }
-   bodyTheme.setAttribute('dark-theme', currentTheme);
-return theme
-   
-   // bodyTheme.value = localStorage.getItem('dark-theme');
-   //  let currentThemedark = Theme.DARK;
-   //    if (currentThemedark === 'dark-theme') {
-   //    bodyTheme.classList.add('dark-theme');
-   //    }
-};
- 
- 
-   
+      //light
+       bodyTheme.classList.remove(Theme.DARK);
+      bodyTheme.classList.add(Theme.LIGHT);
+      localStorage.removeItem('theme', Theme.DARK)
+       localStorage.setItem('theme', Theme.LIGHT);
+   };
+});
+const upCurrentTheme = localStorage.getItem('theme');
+
+if (upCurrentTheme === Theme.DARK) {
+   bodyTheme.classList.add(Theme.DARK);
+  swichToggleTheme.checked = true;
+}
+
+
+
